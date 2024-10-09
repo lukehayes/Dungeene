@@ -8,11 +8,11 @@ local img = love.image.newImageData("assets/map.png")
 local map = {}
 
 
-for x=1, img:getWidth() do
+for x=0, img:getWidth() -1 do
 
     local row = {}
-    for y=1, img:getHeight() do
-        local c = Color(img:getPixel(x-1,y-1))
+    for y=0, img:getHeight() -1 do
+        local c = Color(img:getPixel(x,y))
         table.insert(row, c)
     end
 
@@ -46,20 +46,20 @@ function love.draw()
         for y,c in pairs(row) do
             print(x,y,c)
 
-            --love.graphics.setcolor(
-                --c.r,
-                --c.g,
-                --c.b,
-                --c.a
-            --)
+            love.graphics.setColor(
+                c.r,
+                c.g,
+                c.b,
+                c.a
+            )
 
-            --love.graphics.rectangle(
-                --"fill",
-                --x * 16,
-                --y * 16,
-                --16,
-                --16
-            --)
+            love.graphics.rectangle(
+                "fill",
+                x * 16,
+                y * 16,
+                16,
+                16
+            )
         end
     end
 
