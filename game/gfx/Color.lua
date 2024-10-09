@@ -10,7 +10,6 @@ function Color:new(r,g,b,a)
     self.a = a or 1
 end
 
-
 function Color:__tostring()
     return "Color: {R=" .. self.r ..
             ", G=" .. self.g .. "" ..
@@ -30,24 +29,21 @@ end
 
 function Color.isWhite(color)
 
-    local isWhite =
-              color.r == 1 and
-              color.g == 1 and
-              color.b == 1 and
-              color.a == 1
+    return (color.r == 1 and
+            color.g == 1 and
+            color.b == 1 and
+            color.a == 1)
+            or false
 
-    return isWhite or false
 end
 
 function Color.isBlack(color)
 
-    local isBlack =
-              color.r == 0 and
-              color.g == 0 and
-              color.b == 0 and
-              color.a == 1
-
-    return isBlack or false
+    return (color.r == 0 and
+            color.g == 0 and
+            color.b == 0 and
+            color.a == 1)
+            or false
 end
 
 
