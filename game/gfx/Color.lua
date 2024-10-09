@@ -18,6 +18,16 @@ function Color:__tostring()
             ", A=" .. self.a .. "}"
 end
 
+function Color.isTransparent(color)
+
+    return (color.r == 0 and
+            color.g == 0 and
+            color.b == 0 and
+            color.a == 0)
+            or false
+
+end
+
 function Color.isWhite(color)
 
     local isWhite =
