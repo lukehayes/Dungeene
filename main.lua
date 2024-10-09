@@ -1,12 +1,13 @@
 local go  = require "game.GameObject"
+local R  = require "game.gfx.Renderer"
 local Color  = require "game.gfx.Color"
 
 local obj = go(100,200)
 
 local img = love.image.newImageData("assets/map.png")
+local tiles = love.graphics.newImage("assets/tilesheet.png", {})
 
 local map = {}
-
 
 for x=0, img:getWidth() -1 do
 
@@ -27,24 +28,10 @@ end
 
 function love.draw()
 
-    love.graphics.setColor(
-        obj.color.r,
-        obj.color.g,
-        obj.color.b,
-        obj.color.a
-    )
-
-    love.graphics.rectangle(
-        "fill",
-        obj.position.x,
-        obj.position.y,
-        obj.size.x,
-        obj.size.y
-    )
+    R.clear()
 
     for x,row in pairs(map) do
         for y,c in pairs(row) do
-            print(x,y,c)
 
             love.graphics.setColor(
                 c.r,
@@ -53,16 +40,13 @@ function love.draw()
                 c.a
             )
 
-            love.graphics.rectangle(
-                "fill",
-                x * 16,
-                y * 16,
-                16,
-                16
-            )
+            if Color.isTransparent(c) ~= nil then
+                if Color.isWhite(c) then
+                    R.drawTile(tiles, x,y)
+                end
+            end
         end
     end
-
 
 end
 
