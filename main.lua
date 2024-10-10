@@ -2,6 +2,9 @@ local go  = require "game.GameObject"
 local R  = require "game.gfx.Renderer"
 local Color  = require "game.gfx.Color"
 
+require "game.init"
+
+
 local obj = go(100,200)
 
 local img = love.image.newImageData("assets/map.png")
