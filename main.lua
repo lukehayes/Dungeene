@@ -12,7 +12,7 @@ local img = love.image.newImageData("assets/map.png")
 local tiles = love.graphics.newImage("assets/tilesheet.png", {})
 
 local tileSize  = 16
-local tileScale = 2
+local tileScale = 5
 
 local floor = love.graphics.newQuad( 0, 0, tileSize, tileSize, tiles)
 local wall = love.graphics.newQuad( 16, 0, tileSize, tileSize, tiles)
@@ -49,7 +49,7 @@ function love.draw()
             if Color.isTransparent(c) ~= nil then
                 if Color.isWhite(c) then
                     local yPos = tileSize * tileScale
-                    love.graphics.draw(tiles, floor, x * tileSize , y * tileSize, 0, 1, 1)
+                    love.graphics.draw(tiles, floor, x * (tileSize * tileScale) , y * (tileSize * tileScale), 0, tileScale, tileScale)
                      --R.drawTile(tiles, x,y)
                 end
             end
