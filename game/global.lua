@@ -1,0 +1,3 @@
+TILE_SIZE  = 16
+TILE_SCALE = 5
+
