@@ -5,13 +5,8 @@ require 'game.global'
 
 local c = 0
 
-love.graphics.setDefaultFilter("nearest", "nearest")
-
 local img   = love.image.newImageData("assets/map.png")
-local tiles = love.graphics.newImage("assets/tilesheet.png", {})
-
-local floor = love.graphics.newQuad( 0, 0, TILE_SIZE, TILE_SIZE, tiles)
-local wall  = love.graphics.newQuad( 16, 0, TILE_SIZE, TILE_SIZE, tiles)
+love.graphics.setDefaultFilter("nearest", "nearest")
 
 local map = {}
 for x=0, img:getWidth() -1 do
@@ -22,6 +17,8 @@ for x=0, img:getWidth() -1 do
     end
     table.insert(map, row)
 end
+
+
 function love.load()
 end
 
@@ -34,7 +31,6 @@ function love.draw()
 
     for x,row in pairs(map) do
         for y,c in pairs(row) do
-
             love.graphics.setColor(
                 c.r,
                 c.g,
@@ -42,13 +38,41 @@ function love.draw()
                 c.a
             )
 
-            if Color.isTransparent(c) ~= nil then
-                if Color.isWhite(c) then
-                    local yPos = TILE_SIZE * TILE_SCALE
-                    love.graphics.draw(tiles, floor, x * (TILE_SIZE * TILE_SCALE) , y * (TILE_SIZE * TILE_SCALE), 0, TILE_SCALE, TILE_SCALE)
-                     --R.drawTile(tiles, x,y)
+
+            local scale = TILE_SIZE * TILE_SCALE
+
+            if Color.isWhite(c) then
+                local yPos = TILE_SIZE * TILE_SCALE
+
+                -- DRAW FLOOR
+                love.graphics.draw(tilesheet, tile_floor, x * scale , y * scale, 0, TILE_SCALE, TILE_SCALE)
+
+                -- DRAW SURROUNDING WALL TILES
+
+                local NORTH = map[x][y-1]
+                local SOUTH = map[x][y+1]
+                local EAST = map[x+1][y]
+                local WEST = map[x-1][y]
+
+                if Color.isTransparent(NORTH) then
+                    love.graphics.draw(tilesheet, tile_wall, x * scale , y * scale - scale, 0, TILE_SCALE, TILE_SCALE)
                 end
+
+                if Color.isTransparent(SOUTH) then
+                    love.graphics.draw(tilesheet, tile_wall, x * scale , y * scale + scale, 0, TILE_SCALE, TILE_SCALE)
+                end
+
+                if Color.isTransparent(EAST) then
+                    love.graphics.draw(tilesheet, tile_wall, x * scale + scale, y * scale, 0, TILE_SCALE, TILE_SCALE)
+                end
+
+                if Color.isTransparent(WEST) then
+                    love.graphics.draw(tilesheet, tile_wall, x * scale - scale, y * scale, 0, TILE_SCALE, TILE_SCALE)
+                end
+
+                 --R.drawTile(tiles, x,y)
             end
+
         end
     end
 
