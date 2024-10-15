@@ -3,6 +3,9 @@ local R  = require "game.gfx.Renderer"
 local Color  = require "game.gfx.Color"
 local AStar = require "libs.lua-star"
 
+require 'game.global'
+
+
 local obj = go(100,200)
 local c = 0
 
@@ -11,11 +14,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 local img = love.image.newImageData("assets/map.png")
 local tiles = love.graphics.newImage("assets/tilesheet.png", {})
 
-local tileSize  = 16
-local tileScale = 5
-
-local floor = love.graphics.newQuad( 0, 0, tileSize, tileSize, tiles)
-local wall = love.graphics.newQuad( 16, 0, tileSize, tileSize, tiles)
+local floor = love.graphics.newQuad( 0, 0, TILE_SIZE, TILE_SIZE, tiles)
+local wall  = love.graphics.newQuad( 16, 0, TILE_SIZE, TILE_SIZE, tiles)
 
 local map = {}
 for x=0, img:getWidth() -1 do
@@ -48,8 +48,8 @@ function love.draw()
 
             if Color.isTransparent(c) ~= nil then
                 if Color.isWhite(c) then
-                    local yPos = tileSize * tileScale
-                    love.graphics.draw(tiles, floor, x * (tileSize * tileScale) , y * (tileSize * tileScale), 0, tileScale, tileScale)
+                    local yPos = TILE_SIZE * TILE_SCALE
+                    love.graphics.draw(tiles, floor, x * (TILE_SIZE * TILE_SCALE) , y * (TILE_SIZE * TILE_SCALE), 0, TILE_SCALE, TILE_SCALE)
                      --R.drawTile(tiles, x,y)
                 end
             end
