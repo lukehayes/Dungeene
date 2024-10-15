@@ -17,6 +17,13 @@ function Color:__tostring()
             ", A=" .. self.a .. "}"
 end
 
+function Color.fromColor(color)
+    self.r = color.r
+    self.g = color.g
+    self.b = color.b
+    self.a = color.a
+end
+
 function Color.isTransparent(color)
 
     return (color.r == 0 and
