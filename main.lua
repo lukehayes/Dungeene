@@ -1,17 +1,13 @@
-local go  = require "game.GameObject"
 local R  = require "game.gfx.Renderer"
 local Color  = require "game.gfx.Color"
-local AStar = require "libs.lua-star"
 
 require 'game.global'
 
-
-local obj = go(100,200)
 local c = 0
 
 love.graphics.setDefaultFilter("nearest", "nearest")
 
-local img = love.image.newImageData("assets/map.png")
+local img   = love.image.newImageData("assets/map.png")
 local tiles = love.graphics.newImage("assets/tilesheet.png", {})
 
 local floor = love.graphics.newQuad( 0, 0, TILE_SIZE, TILE_SIZE, tiles)
