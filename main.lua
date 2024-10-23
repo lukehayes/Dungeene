@@ -20,14 +20,6 @@ for x=0, img:getWidth() -1 do
   table.insert(map, row)
 end
 
---for x,row in ipairs(map) do
---for y,c in ipairs(row) do
-----print(x,y)
---end
---end
-
---print("------------")
-
 function love.load()
 end
 
@@ -42,29 +34,11 @@ function love.draw()
   for x,row in pairs(map) do
     for y,c in pairs(row) do
 
-        local xIsOne = (x == 1)
-        local xIsMax = (x == img:getWidth())
-        local yIsOne = (y == 1)
-        local yIsMax = (y == img:getHeight())
-
-
-        if xIsOne then
-          WEST = map[1][y]
-        else
-          WEST = map[x-1][y]
+        if Color.isWhite(c) then
+            Renderer.drawTile(tilesheet , x,y)
         end
-
-        if xIsMax and not xIsOne then
-          WEST = map[x][y]
-        else
-          WEST = map[x-1][y]
-        end
-
-
-
     end
   end
-  print("--------------")
 
   love.graphics.rectangle("fill", 200 + math.cos(c) * 100, 200 + math.sin(c) * 100, 32,32)
 end
