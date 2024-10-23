@@ -1,6 +1,5 @@
 local R  = require "game.gfx.Renderer"
 local Color  = require "game.gfx.Color"
-
 require 'game.global'
 
 local c = 0
@@ -35,6 +34,14 @@ function love.draw()
     for y,c in pairs(row) do
 
         if Color.isWhite(c) then
+
+            NORTH = map[x][y-1]
+            if NORTH == nil then
+                Renderer.drawTile(tilesheet , x,(y * TILE_SIZE) - TILE_SCALE)
+            else
+                love.graphics.setColor(1,1,1,1)
+            end
+
             Renderer.drawTile(tilesheet , x,y)
         end
     end
