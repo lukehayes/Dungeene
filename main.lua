@@ -37,7 +37,7 @@ function love.draw()
 
             NORTH = map[x][y-1]
             if NORTH == nil then
-                Renderer.drawTile(tilesheet , x,(y * TILE_SIZE) - TILE_SCALE)
+                Renderer.drawTile(tilesheet , x,(y * TILE_SIZE) - TILE_MULT)
             else
                 love.graphics.setColor(1,1,1,1)
             end

@@ -1,5 +1,6 @@
 TILE_SIZE  = 16
-TILE_SCALE = 3
+TILE_MULT  = 3
+TILE_SCALE = TILE_SIZE * TILE_MULT
 
 love.graphics.setDefaultFilter("nearest", "nearest")
 tilesheet  = love.graphics.newImage("assets/tilesheet.png", {})
