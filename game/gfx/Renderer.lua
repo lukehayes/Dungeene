@@ -47,7 +47,6 @@ end
 
 function Renderer.drawTile(tilesheet, x,y)
     love.graphics.draw(tilesheet, x * TILE_SCALE, y * TILE_SCALE, 0, TILE_MULT, TILE_MULT)
-    --love.graphics.draw(tilesheet, x * TILE_MULT,y * TILE_MULT,0, TILE_SCALE, TILE_SCALE)
 end
 
 return Renderer
