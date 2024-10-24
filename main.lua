@@ -30,22 +30,6 @@ function love.draw()
 
   R.clear()
 
-  for x,row in pairs(map) do
-    for y,c in pairs(row) do
-
-        if Color.isWhite(c) then
-
-            NORTH = map[x][y-1]
-            if NORTH == nil then
-                Renderer.drawTile(tilesheet , x,(y * TILE_SIZE) - TILE_MULT)
-            else
-                love.graphics.setColor(1,1,1,1)
-            end
-
-            Renderer.drawTile(tilesheet , x,y)
-        end
-    end
-  end
 
   love.graphics.rectangle("fill", 200 + math.cos(c) * 100, 200 + math.sin(c) * 100, 32,32)
 end

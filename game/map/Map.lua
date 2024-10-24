@@ -19,4 +19,17 @@ function Map:draw()
   end
 end
 
+function Map:printMap()
+  for x,row in pairs(map) do
+    for y,c in pairs(row) do
+      if Color.isWhite(c) then
+        io.write("o")
+      else
+        io.write(".")
+      end
+    end
+      io.write("\n")
+  end
+end
+
 return Map
