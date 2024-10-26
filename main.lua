@@ -1,23 +1,12 @@
-local R  = require "game.gfx.Renderer"
+local R      = require "game.gfx.Renderer"
 local Color  = require "game.gfx.Color"
+local Map    = require "game.map.Map"
 require 'game.global'
 
+local map = Map("assets/map.png")
+map:buildMap()
+
 local c = 0
-
-local img   = love.image.newImageData("assets/map.png")
-love.graphics.setDefaultFilter("nearest", "nearest")
-
-local map = {}
-for x=0, img:getWidth() -1 do
-
-  local row = {}
-
-  for y=0, img:getHeight() -1 do
-    local c = Color(img:getPixel(x,y))
-    table.insert(row, c)
-  end
-  table.insert(map, row)
-end
 
 function love.load()
 end
@@ -27,15 +16,9 @@ function love.update(dt)
 end
 
 function love.draw()
-
   R.clear()
-
-
+  map:draw()
   love.graphics.rectangle("fill", 200 + math.cos(c) * 100, 200 + math.sin(c) * 100, 32,32)
-end
-
-function mapBoundsCheck(x,y, width, height)
-  return x < 1 or x > width or y < 1 or y > height
 end
 
 function love.keypressed(key, scancode, isrepeat)

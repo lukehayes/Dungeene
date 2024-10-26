@@ -9,8 +9,21 @@ function Map:new(tilesheet_path)
   love.graphics.setDefaultFilter("nearest", "nearest")
 end
 
+function Map:buildMap()
+  for x=0, self.img:getWidth() -1 do
+
+    local row = {}
+
+    for y=0, self.img:getHeight() -1 do
+      local c = Color(self.img:getPixel(x,y))
+      table.insert(row, c)
+    end
+    table.insert(self.map, row)
+  end
+end
+
 function Map:draw()
-  for x,row in pairs(map) do
+  for x,row in pairs(self.map) do
     for y,c in pairs(row) do
       if Color.isWhite(c) then
         Renderer.drawTile(tilesheet , x,y)
@@ -28,7 +41,7 @@ function Map:printMap()
         io.write(".")
       end
     end
-      io.write("\n")
+    io.write("\n")
   end
 end
 
