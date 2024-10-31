@@ -7,6 +7,8 @@ function Map:new(tilesheet_path)
   self.map = {}
   self.img   = love.image.newImageData(tilesheet_path)
   love.graphics.setDefaultFilter("nearest", "nearest")
+  self.width  = 10
+  self.height = 10
 end
 
 function Map:buildMap()
