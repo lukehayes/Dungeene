@@ -26,7 +26,31 @@ function Map:draw()
   for x,row in pairs(self.map) do
     for y,c in pairs(row) do
       if Color.isWhite(c) then
-        Renderer.drawTile(tilesheet , x,y)
+        Renderer.drawTile(tilesheet, tile_floor, x,y)
+
+        -- Draw walls here
+        -- TODO Does not work if the tile is on the edge of the map.
+        local NORTH = self.map[x][y-1]
+        local SOUTH = self.map[x][y+1]
+        local EAST = self.map[x+1][y]
+        local WEST = self.map[x-1][y]
+
+        if Color.isTransparent(NORTH) then
+            Renderer.drawTile(tilesheet, tile_wall, x,y - 1)
+        end
+
+        if Color.isTransparent(SOUTH) then
+            Renderer.drawTile(tilesheet, tile_wall, x,y + 1)
+        end
+
+        if Color.isTransparent(EAST) then
+            Renderer.drawTile(tilesheet, tile_wall, x+1,y)
+        end
+
+        if Color.isTransparent(WEST) then
+            Renderer.drawTile(tilesheet, tile_wall, x-1,y)
+        end
+
       end
     end
   end
