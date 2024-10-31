@@ -45,8 +45,8 @@ function Renderer.draw(gameObject)
     )
 end
 
-function Renderer.drawTile(tilesheet, x,y)
-    love.graphics.draw(tilesheet, x * TILE_SCALE, y * TILE_SCALE, 0, TILE_MULT, TILE_MULT)
+function Renderer.drawTile(tilesheet, tile_type, x,y)
+    love.graphics.draw(tilesheet, tile_type, x * TILE_SCALE, y * TILE_SCALE, 0, TILE_MULT, TILE_MULT)
 end
 
 return Renderer
