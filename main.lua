@@ -3,22 +3,44 @@ local Color  = require "game.gfx.Color"
 local Map    = require "game.map.Map"
 require 'game.global'
 
-local map = Map("assets/map.png")
-map:buildMap()
+local SPACE = 20
+local grid = {
+  {1,1,1,1,1,1,1,1,1,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,1}
+}
 
-local c = 0
+function GridDraw(grid)
+
+  for x = 1, 10 - 1, 1 do
+    for y = 1, 10 - 1, 1 do
+
+      local cell = grid[x][y]
+
+      if cell == 0 then
+        love.graphics.rectangle('line', x * SPACE,y * SPACE,10,10)
+      else
+        love.graphics.rectangle('fill', x * SPACE,y * SPACE,10,10)
+      end
+    end
+  end
+end
+
+
 
 function love.load()
 end
 
 function love.update(dt)
-  c = c + 0.1
 end
 
 function love.draw()
   R.clear()
-  map:draw()
-  love.graphics.rectangle("fill", 200 + math.cos(c) * 100, 200 + math.sin(c) * 100, 32,32)
+
+  GridDraw(grid)
 end
 
 function love.keypressed(key, scancode, isrepeat)
