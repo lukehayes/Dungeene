@@ -10,20 +10,24 @@ local grid = {
   {1,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1}
 }
 
 function GridDraw(grid)
 
-  for x = 1, 10 - 1, 1 do
-    for y = 1, 10 - 1, 1 do
+  for x = 1, 10, 1 do
+    for y = 1, 10, 1 do
 
       local cell = grid[x][y]
 
       if cell == 0 then
-        love.graphics.rectangle('line', x * SPACE,y * SPACE,10,10)
+        love.graphics.rectangle('line', x * SPACE,y * SPACE,SPACE,SPACE)
       else
-        love.graphics.rectangle('fill', x * SPACE,y * SPACE,10,10)
+        love.graphics.rectangle('fill', x * SPACE,y * SPACE,SPACE,SPACE)
       end
     end
   end
